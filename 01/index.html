@@ -12,8 +12,8 @@
 <body>
 <h1 class="u-mbm is-big">JS1</h1>
 <div class="wrapper">
-  <div class="u-mbm btn">Q1</div>
-  <div class="u-mbm btn">Q2</div>
+  <div id="q1" class="u-mbm btn">Q1</div>
+  <div id="q2" onclick="click()" class="u-mbm btn">Q2</div>
   <div class="u-mbm btn">Q3</div>
   <div class="u-mbm btn">Q4</div>
   <div class="u-mbm btn is-big">Q5</div>
@@ -64,9 +64,15 @@
   // js課題① 下記問題のJSを実装して下さい
 
   // 第1問 ロードから5秒後にQ1の要素の文字サイズを30pxにせよ。
-
+  function sizeup () {
+    document.getElementById("q1").style.fontsize="30px";
+    window.setTimeout(sizeup,5000)
+  }
   // 第2問 Q2の要素をクリックしたら背景色を赤、文字色を黒にせよ。
-
+  function click () {
+    document.getElementById("q2").style.backgroundColor="red";
+    document.getElementById("q2").style.Color="brack";
+  }
   // 第3問 Q3の要素をクリックしたら文字色を赤にし、その状態でもう一度クリックすると元に戻るようにせよ。
 
   // 第4問 Q4の要素をクリックしたらこの要素の前後とこの要素内の前後に<p>テキスト</p>を挿入せよ。
