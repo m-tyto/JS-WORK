@@ -46,3 +46,10 @@
 .is-big {
   font-size: 25px;
 }
+#q6{
+  transition:0.5s;
+}
+.qq6{
+  margin-bottom: 150px;
+  margin-left: 150px;
+}

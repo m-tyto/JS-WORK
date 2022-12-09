@@ -13,12 +13,12 @@
 <h1 class="u-mbm is-big">JS1</h1>
 <div class="wrapper">
   <div id="q1" class="u-mbm btn">Q1</div>
-  <div id="q2" onclick="click()" class="u-mbm btn">Q2</div>
-  <div class="u-mbm btn">Q3</div>
-  <div class="u-mbm btn">Q4</div>
-  <div class="u-mbm btn is-big">Q5</div>
-  <div class="u-mbm btn">Q6</div>
-  <div>
+  <div id="q2" class="u-mbm btn">Q2</div>
+  <div id="q3" class="u-mbm btn">Q3</div>
+  <div id="q4" class="u-mbm btn">Q4</div>
+  <div id="q5" class="u-mbm btn is-big">Q5</div>
+  <div id="q6" class="u-mbm btn">Q6</div>
+  <div id="q7">
     <dl class="u-mbm lists">
       <dt>Q7_dt_1</dt>
       <dd>Q7_dd_1</dd>
@@ -40,20 +40,20 @@
       <dd>Q7_dd_5</dd>
     </dl>
   </div>
-  <div class="u-mbm btn">Q8</div>
-  <div class="u-mbm btn">Q9</div>
-  <ul class="u-mbm lists">
+  <div id="q8" class="u-mbm btn">Q8</div>
+  <div id="q9" class="u-mbm btn">Q9</div>
+  <ul id="q10" class="u-mbm lists">
     <li>Q10_1</li>
     <li>Q10_2</li>
     <li>Q10_3</li>
   </ul>
-  <ul class="u-mbm lists">
+  <ul id="q11" class="u-mbm lists">
     <li>Q11_1</li>
     <li>Q11_2</li>
     <li>Q11_3</li>
   </ul>
-  <div class="u-mbm btn">Q12</div>
-  <ul class="u-mbm lists">
+  <div id="q12" class="u-mbm btn">Q12</div>
+  <ul id="q13" class="u-mbm lists">
     <li>Q13_1</li>
     <li>Q13_2</li>
     <li>Q13_3</li>
@@ -61,35 +61,94 @@
 </div>
 
 <script defer>
+  
   // js課題① 下記問題のJSを実装して下さい
 
   // 第1問 ロードから5秒後にQ1の要素の文字サイズを30pxにせよ。
-  function sizeup () {
-    document.getElementById("q1").style.fontsize="30px";
-    window.setTimeout(sizeup,5000)
-  }
-  // 第2問 Q2の要素をクリックしたら背景色を赤、文字色を黒にせよ。
-  function click () {
-    document.getElementById("q2").style.backgroundColor="red";
-    document.getElementById("q2").style.Color="brack";
-  }
-  // 第3問 Q3の要素をクリックしたら文字色を赤にし、その状態でもう一度クリックすると元に戻るようにせよ。
+  window.setTimeout(function(){
+  document.getElementById("q1").style.fontSize="30px";
+  }, 5000);
 
+  // 第2問 Q2の要素をクリックしたら背景色を赤、文字色を黒にせよ。
+  document.getElementById("q2").onclick = function() {
+    this.style.backgroundColor="red";
+    this.style.color="black";
+  }
+
+  // 第3問 Q3の要素をクリックしたら文字色を赤にし、その状態でもう一度クリックすると元に戻るようにせよ。
+  document.getElementById("q3").onclick = function(){
+    if(event.srcElement.style.color=="red"){
+      changeBlack();
+    }else{
+      changeRed()
+    }
+  }
+  function changeRed(){
+  event.srcElement.style.color="red";
+  }
+  function changeBlack(){
+  event.srcElement.style.color="black";
+  }
+  
   // 第4問 Q4の要素をクリックしたらこの要素の前後とこの要素内の前後に<p>テキスト</p>を挿入せよ。
+  document.getElementById("q4").onclick = function (){
+  const element=document.getElementById("q4");
+		element.insertAdjacentText('beforebegin','テキスト');
+		element.insertAdjacentText('afterbegin','テキスト');
+    element.insertAdjacentText('beforeend','テキスト');
+		element.insertAdjacentText('afterend','テキスト'); 
+  }  
 
   // 第5問 Q5の要素をクリックしたらこの要素からis-bigというクラスを削除せよ。
+  document.getElementById("q5").onclick = function (){
+    this.classList.remove("is-big");
+  }
 
   // 第6問 Q6の要素をクリックしたらこの要素を0.5秒かけてmargin-rightとmargin-bottomを150pxの位置に移動させよ。
+  document.getElementById("q6").onclick = function (){
+    this.classList.toggle("qq6");
+  }
 
   // 第7問 Q7の要素をクリックしたら、その要素が「何番目のdlの子要素」かをconsole.log()とalert()を用いて表示させよ。（最初の要素は0ではなく1と表示されること）Hint：closest()メソッドを使う
-
+  const btn7 =document.getElementById("q7").getElementsByClassName("lists");
+    for(let i = 0; i < btn7.length; i++){
+      btn7[i].addEventListener('click',function() {
+      let targetNum = this.closest("dl")+ 1;
+      console.log(targetNum);
+      alert(targetNum);
+    });
+  }
+  // 116行がおかしいと思うのですが、解決方法がわかりませんでした。。。
+  
   // 第8問 Q8の要素をhoverしたらis-bigというクラスを付与し、hoverが外れたら、クラスを削除せよ。
+  const big = document.getElementById("q8");
+  big.addEventListener("mouseover",function(){
+    big.classList.add("is-big");
+  }, false);
+  big.addEventListener("mouseleave",function(){
+    big.classList.remove("is-big");
+  }, false);
 
   // 第9問 Q9の要素をクリックしたらこの要素にdata属性を設定し、その内容をconsoleに表示せよ。
-
+  var date_obj = new Date();
+  var date = date_obj.getDate();
+  const day = document.getElementById("q9");
+  day.addEventListener("click",function(){
+    console.log(date);
+  });
   // 第10問 Q10の子要素をクリックしたら、その要素のインデックスと等しいid="q11"の子要素にis-bigというクラスを追加し、それ以外のクラスからは削除せよ。（インデックスの一致する要素だけにis-bigがついている状態）
+  // document.getElementById("q10").onclick = function() {
+    document.addEventListener('click',e =>{
+  const t=e.target.closest('#q10 li');
+  if(t){
+    const idx=document.querySelectorAll('#q10 li');
+    document.querySelector('#q11 li.is_big').classList.remove('is_big');
+    document.querySelector('#q11 li:nth-child(${idx+1})').classList.add('is_big');
+  }
+});
 
   // 第11問 Q12をクリックしたら、Q13リストのli要素の順番と中身のテキストをconsoleに表示させよ。
 </script>
+
 </body>
 </html>
