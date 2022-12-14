@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scnum=1.0, maximum-scnum=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <title>JS01</title>
   <link rel="stylesheet" href="../00-tools/css/reset.css">
@@ -18,7 +18,7 @@
   <div id="q4" class="u-mbm btn">Q4</div>
   <div id="q5" class="u-mbm btn is-big">Q5</div>
   <div id="q6" class="u-mbm btn">Q6</div>
-  <div id="q7">
+  <div>
     <dl class="u-mbm lists">
       <dt>Q7_dt_1</dt>
       <dd>Q7_dd_1</dd>
@@ -79,10 +79,10 @@
   document.getElementById("q3").onclick = function(){
     if(event.srcElement.style.color=="red"){
       changeBlack();
-    }else{
+    }elsQ
       changeRed()
     }
-  }
+  
   function changeRed(){
   event.srcElement.style.color="red";
   }
@@ -91,12 +91,12 @@
   }
   
   // 第4問 Q4の要素をクリックしたらこの要素の前後とこの要素内の前後に<p>テキスト</p>を挿入せよ。
-  document.getElementById("q4").onclick = function (){
-  const element=document.getElementById("q4");
-		element.insertAdjacentText('beforebegin','テキスト');
-		element.insertAdjacentText('afterbegin','テキスト');
-    element.insertAdjacentText('beforeend','テキスト');
-		element.insertAdjacentText('afterend','テキスト'); 
+  const Q4=document.getElementById("q4");
+  Q4.onclick = function (){
+		Q4.insertAdjacentText("beforebegin","テキスト");
+		Q4.insertAdjacentText("afterbegin","テキスト");
+    Q4.insertAdjacentText("beforeend","テキスト");
+		Q4.insertAdjacentText("afterend","テキスト"); 
   }  
 
   // 第5問 Q5の要素をクリックしたらこの要素からis-bigというクラスを削除せよ。
@@ -109,45 +109,59 @@
     this.classList.toggle("qq6");
   }
 
-  // 第7問 Q7の要素をクリックしたら、その要素が「何番目のdlの子要素」かをconsole.log()とalert()を用いて表示させよ。（最初の要素は0ではなく1と表示されること）Hint：closest()メソッドを使う
-  const btn7 =document.getElementById("q7").getElementsByClassName("lists");
-    for(let i = 0; i < btn7.length; i++){
-      btn7[i].addEventListener('click',function() {
-      let targetNum = this.closest("dl")+ 1;
-      console.log(targetNum);
-      alert(targetNum);
+  // 第7問 Q7の要素をクリックしたら、その要素が「何番目のdlの子要素」かをconsole.log()とnumrt()を用いて表示させよ。（最初の要素は0ではなく1と表示されること）Hint：closest()メソッドを使う
+  const btn7 = document.querySelectorAll("dl");
+  btn7.forEach(function(num) {
+    num.addEventListener("click",function() {
+      const index = Array.from (btn7).indexOf(num);
+      console.log(index +1);
+      alert(index +1);
     });
-  }
-  // 116行がおかしいと思うのですが、解決方法がわかりませんでした。。。
+  });
   
   // 第8問 Q8の要素をhoverしたらis-bigというクラスを付与し、hoverが外れたら、クラスを削除せよ。
-  const big = document.getElementById("q8");
-  big.addEventListener("mouseover",function(){
-    big.classList.add("is-big");
+  const Q8 = document.getElementById("q8");
+  Q8.addEventListener("mouseover",function(){
+    Q8.classList.add("is-big");
   }, false);
-  big.addEventListener("mouseleave",function(){
-    big.classList.remove("is-big");
+  Q8.addEventListener("mouseleave",function(){
+    Q8.classList.remove("is-big");
   }, false);
 
   // 第9問 Q9の要素をクリックしたらこの要素にdata属性を設定し、その内容をconsoleに表示せよ。
-  var date_obj = new Date();
-  var date = date_obj.getDate();
-  const day = document.getElementById("q9");
-  day.addEventListener("click",function(){
-    console.log(date);
+  const Q9 = document.getElementById("q9");
+  Q9.addEventListener("click",function(){
+    Q9.dataset.value ="data";
+    console.log(Q9.dataset.value);
   });
-  // 第10問 Q10の子要素をクリックしたら、その要素のインデックスと等しいid="q11"の子要素にis-bigというクラスを追加し、それ以外のクラスからは削除せよ。（インデックスの一致する要素だけにis-bigがついている状態）
-  // document.getElementById("q10").onclick = function() {
-    document.addEventListener('click',e =>{
-  const t=e.target.closest('#q10 li');
-  if(t){
-    const idx=document.querySelectorAll('#q10 li');
-    document.querySelector('#q11 li.is_big').classList.remove('is_big');
-    document.querySelector('#q11 li:nth-child(${idx+1})').classList.add('is_big');
-  }
-});
 
+  // 第10問 Q10の子要素をクリックしたら、その要素のインデックスと等しいid="q11"の子要素にis-bigというクラスを追加し、それ以外のクラスからは削除せよ。（インデックスの一致する要素だけにis-bigがついている状態）
+  const Q10 = document.getElementById("q10");
+  const Q11 = document.querySelectorAll("#q11 li");
+
+  Q10.addEventListener("click",function(event) {
+    const ul10 = event.target.parentNode;
+    const li10 = ul10.querySelectorAll("li");
+
+    for (let i = 0; i<li10.length; i++) {
+      Q11[i].classList.remove("is-big");
+    }
+    const index = Array.prototype.indexOf.call(li10,event.target);
+    Q11[index].classList.add("is-big");
+  })
+  
   // 第11問 Q12をクリックしたら、Q13リストのli要素の順番と中身のテキストをconsoleに表示させよ。
+  const Q12 = document.getElementById("q12");
+  const list13 = document.querySelectorAll("#q13 li");
+
+  Q12.addEventListener("click", function(event){
+    const ul12 = event.target.parentNode;
+    const li12 = ul12.querySelectorAll("#q13 li");
+      for (let i = 0; i < li12.length; i++) {
+        console.log(i);
+        console.log(list13[i].textContent);
+      }
+  });
 </script>
 
 </body>
