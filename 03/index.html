@@ -11,8 +11,8 @@
 </head>
 <body>
 <div class="wrapper">
-  <p class="modal-show">CLICK!!</p>
-  <div class="modal" style="display: none;">
+  <p class="modal-show" id="modal-show">CLICK!!</p>
+  <div class="modal" id="modal" style="display: none;">
     <div class="modal-content">
       <div class="modal-text">MODAL WINDOW</div>
       <button type="button" class="modal-close">x</button>
@@ -26,6 +26,19 @@
    *
    * 
    */
+const Open = document.getElementById("modal-show");
+const modal = document.getElementById("modal");
+const Close = document.getElementsByClassName("modal-close")[0];
+
+Open.addEventListener("click", modalOpen);
+function modalOpen() {
+  modal.style.display = "block";
+}
+
+Close.addEventListener("click", modalClose);
+function modalClose() {
+  modal.style.display = "none";
+}
 </script>
 </body>
 </html>
