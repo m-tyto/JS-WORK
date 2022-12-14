@@ -93,10 +93,10 @@
   // 第4問 Q4の要素をクリックしたらこの要素の前後とこの要素内の前後に<p>テキスト</p>を挿入せよ。
   const Q4=document.getElementById("q4");
   Q4.onclick = function (){
-		Q4.insertAdjacentText("beforebegin","テキスト");
-		Q4.insertAdjacentText("afterbegin","テキスト");
-    Q4.insertAdjacentText("beforeend","テキスト");
-		Q4.insertAdjacentText("afterend","テキスト"); 
+		Q4.insertAdjacentText("beforebegin","テキスト");//要素前
+		Q4.insertAdjacentText("afterbegin","テキスト");//テキスト前
+    Q4.insertAdjacentText("beforeend","テキスト");//テキスト後
+		Q4.insertAdjacentText("afterend","テキスト");//要素前
   }  
 
   // 第5問 Q5の要素をクリックしたらこの要素からis-bigというクラスを削除せよ。
