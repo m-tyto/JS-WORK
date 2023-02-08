@@ -17,8 +17,10 @@
   <div id=Q3 class="u-mbm btn">Q3</div>
   <div id=Q4 class="u-mbm btn">Q4</div>
   <div id=Q5 class="u-mbm btn">Q5</div>
-  <div id=Q6 class="u-mbm btn color">Q6</div>
-  <div id=Q7 class="u-mbm btn color">Q7</div>
+  <div id=Q6 class="u-mbm btn color"input type="btn" onclick="color('red')"><span>Q6</span></div>
+  <div id=Q7 class="u-mbm btn color"input type="btn" onclick="color('blue')"><span>Q7</span></div>
+  
+  
 </div>
 
 <script defer>
@@ -139,21 +141,31 @@ const Q5 = document.getElementById("Q5");
    * 但し、コールバック関数は１つで実装すること。
    * 必要に応じて、要素に属性などは追加して良いものとします。
    */
-const Q6 = document.getElementById("Q6");
-const Q7 = document.getElementById("Q7");
-const color = document.querySelectorAll(".color");
 
-  Q6.onclick = function (){
-    color.forEach(function(element) {
-      element.style.color = "red";
-    });
-  };
+//const Q6 = document.getElementById("Q6");
+//const Q7 = document.getElementById("Q7");
+//const color = document.querySelectorAll(".color");
 
-  Q7.onclick = function (){
-    color.forEach(function(element) {
-      element.style.color = "blue";
-    });
-  };
+  //Q6.onclick = function (){
+    //color.forEach(function(element) {
+      //element.style.color = "red";
+    //});
+  //};
+
+  //Q7.onclick = function (){
+    //color.forEach(function(element) {
+      //element.style.color = "blue";
+    //});
+  //};
+
+function color(textColor){//textColorで関数をまとめる
+  var keyword = document.getElementsByTagName("span");//色を変える部分の取得（span)で囲まれている部分
+    for(var i=0;i<keyword.length;i++){
+      keyword[i].style.color = textColor;//spanで囲われている部分の色を変える
+    };
+};
+//textColorがこの関数の引数で、html側のonClick=color(引数)*今回の場合はonClick=color('red')が文字列として使われる。
+
 </script>
 </body>
 </html>
