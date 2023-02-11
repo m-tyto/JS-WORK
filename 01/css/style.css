@@ -43,6 +43,13 @@
   width: 200px;
   margin: 30px auto 0;
 }
-.is-big {
+.is-big{
   font-size: 25px;
+}
+#q6{
+  transition:0.5s;
+}
+.qq6{
+  margin-top: 150px;
+  margin-left: 150px;
 }
